@@ -5,6 +5,7 @@ import { getDictionary } from '@/lib/i18n';
 import { brand } from '@/lib/tokens';
 import { SiteHeader } from '@/components/khatib/SiteHeader';
 import { SiteFooter } from '@/components/khatib/SiteFooter';
+import { Analytics } from '@/components/khatib/Analytics';
 
 const dict = getDictionary('en');
 
@@ -40,6 +41,7 @@ export default function EnglishRootLayout({ children }: { children: React.ReactN
         <SiteHeader locale="en" dict={dict} />
         <main id="main">{children}</main>
         <SiteFooter locale="en" dict={dict} />
+        <Analytics />
       </body>
     </html>
   );

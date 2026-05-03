@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { EditorialPage } from '@/components/khatib/EditorialPage';
 import { getDictionary } from '@/lib/i18n';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, editorialRolesJsonLd } from '@/lib/metadata';
+import { editorialGroups } from '@/content/editorial-roles';
 
 const dict = getDictionary('en');
 export const metadata: Metadata = buildMetadata({
@@ -12,5 +13,25 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Page() {
-  return <EditorialPage locale="en" dict={dict} />;
+  const ld = editorialRolesJsonLd(
+    editorialGroups.flatMap((g) =>
+      g.roles.map((r) => ({
+        role: r.role,
+        name: r.name,
+        publisher: r.publisher,
+        region: g.region,
+        link: r.link,
+      })),
+    ),
+  );
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD injection
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
+      <EditorialPage locale="en" dict={dict} />
+    </>
+  );
 }

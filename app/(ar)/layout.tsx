@@ -5,6 +5,7 @@ import { getDictionary } from '@/lib/i18n';
 import { brand } from '@/lib/tokens';
 import { SiteHeader } from '@/components/khatib/SiteHeader';
 import { SiteFooter } from '@/components/khatib/SiteFooter';
+import { Analytics } from '@/components/khatib/Analytics';
 
 const dict = getDictionary('ar');
 
@@ -39,6 +40,7 @@ export default function ArabicRootLayout({ children }: { children: React.ReactNo
         <SiteHeader locale="ar" dict={dict} />
         <main id="main">{children}</main>
         <SiteFooter locale="ar" dict={dict} />
+        <Analytics />
       </body>
     </html>
   );

@@ -214,6 +214,41 @@ interface PublicationItem {
   doi?: string;
 }
 
+interface EditorialRoleEntry {
+  role: string;
+  name: string;
+  publisher: string;
+  region: string;
+  link?: string;
+}
+
+// Editorial board memberships rendered as ItemList of OrganizationRole.
+// Helps Google understand the cross-border editorial network as a connected
+// graph rather than a flat list — useful for "Khatib + journal" queries.
+export function editorialRolesJsonLd(roles: EditorialRoleEntry[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Editorial board and reviewer positions held by Dr. Milad Khatib',
+    itemListElement: roles.map((r, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'OrganizationRole',
+        roleName: r.role,
+        member: { '@type': 'Person', name: brand.shortNameEn },
+        memberOf: {
+          '@type': 'Organization',
+          name: r.name,
+          ...(r.publisher ? { parentOrganization: { '@type': 'Organization', name: r.publisher } } : {}),
+          ...(r.link ? { url: r.link } : {}),
+          areaServed: r.region,
+        },
+      },
+    })),
+  };
+}
+
 interface SpeakingEvent {
   date: string;
   title: string;
