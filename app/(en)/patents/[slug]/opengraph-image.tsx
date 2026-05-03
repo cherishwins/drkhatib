@@ -1,20 +1,15 @@
 import { ImageResponse } from 'next/og';
-import { findPatent, patents } from '@/content/patents';
+import { findPatent } from '@/content/patents';
 
-// Per-patent OG image. Each patent gets its own 1200x630 PNG with the patent
-// title, year, and "Lebanese-registered patent" framing — so when Dr. Khatib
-// shares a patent URL on LinkedIn or in an email, the unfurl shows the
-// specific patent rather than the site's generic OG.
+// Per-patent OG image. Each patent gets its own 1200x630 PNG via the
+// dynamic route segment — when /patents/<slug> is requested, Next 14
+// invokes the default export with that slug as params.slug.
 //
 // Runtime: default Node (Fluid Compute) per Vercel knowledge update 2026-02.
 
 export const alt = 'Patent case study — Dr. Milad Khatib · Civil Engineering Consultancy';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
-
-export function generateImageMetadata() {
-  return patents.map((p) => ({ id: p.slug, alt: `${p.title_en} — Lebanese patent` }));
-}
 
 export default async function PatentOgImage({ params }: { params: { slug: string } }) {
   const patent = findPatent(params.slug);
