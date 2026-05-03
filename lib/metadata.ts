@@ -22,13 +22,13 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
   const enPath = stripLocale(input.path);
   const arPath = enPath === '/' ? '/ar' : `/ar${enPath}`;
   const canonical = locale === 'en' ? enPath : arPath;
-  const ogImage = input.ogImage ?? '/opengraph-image';
-  const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${SITE}${ogImage}`;
-  const ogImageAlt =
-    input.ogImageAlt ?? 'Dr. Milad Khatib at his office, Beirut, 2026.';
   const ogLocale = locale === 'en' ? 'en_US' : 'ar_LB';
   const altLocale = otherLocale === 'en' ? 'en_US' : 'ar_LB';
 
+  // OG/Twitter images intentionally omitted here: Next 14's file-convention
+  // (app/opengraph-image.tsx and per-segment overrides like
+  // app/(en)/patents/[slug]/opengraph-image.tsx) populates them automatically
+  // for the closest segment. Adding `images` here would shadow that.
   return {
     title: input.title,
     description: input.description,
@@ -48,15 +48,6 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       type: input.ogType ?? 'website',
       locale: ogLocale,
       alternateLocale: [altLocale],
-      images: [
-        {
-          url: ogImageAbsolute,
-          width: 1200,
-          height: 630,
-          alt: ogImageAlt,
-          type: 'image/png',
-        },
-      ],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
     },
@@ -64,7 +55,6 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       card: 'summary_large_image',
       title: input.title,
       description: input.description,
-      images: [ogImageAbsolute],
     },
     robots: {
       index: process.env.VERCEL_ENV !== 'preview',
