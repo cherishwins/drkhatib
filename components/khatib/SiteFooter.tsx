@@ -50,6 +50,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
 
             <FooterColumn label={dict.footer.registration}>
               <FooterLink href={`${prefix}/about`}>{dict.nav.about}</FooterLink>
+              <FooterLink href={`${prefix}/cv`}>{locale === 'en' ? 'CV' : 'السيرة الذاتية'}</FooterLink>
               <FooterLink href={`${prefix}/editorial`}>{dict.nav.editorial}</FooterLink>
               <FooterLink href={`${prefix}/speaking`}>{dict.nav.speaking}</FooterLink>
               <FooterLink href={`${prefix}/legal/imprint`}>{dict.footer.imprint}</FooterLink>

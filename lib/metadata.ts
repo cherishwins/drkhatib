@@ -207,6 +207,41 @@ interface PublicationItem {
   doi?: string;
 }
 
+interface SpeakingEvent {
+  date: string;
+  title: string;
+  venue: string;
+  country: string;
+  link?: string;
+}
+
+// Speaking engagements rendered as Event schema items inside an ItemList.
+// Date is left in the source format (e.g. "Jul 2024") — Google's structured
+// data validator accepts free-form when an exact ISO date isn't available.
+export function speakingEventsJsonLd(events: SpeakingEvent[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Selected speaking engagements by Dr. Milad Khatib',
+    itemListElement: events.map((e, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Event',
+        name: e.title,
+        startDate: e.date,
+        location: {
+          '@type': 'Place',
+          name: e.venue,
+          address: { '@type': 'PostalAddress', addressCountry: e.country },
+        },
+        performer: { '@type': 'Person', name: brand.shortNameEn },
+        ...(e.link ? { url: e.link } : {}),
+      },
+    })),
+  };
+}
+
 // Selected publications rendered as an ItemList of ScholarlyArticle so the
 // home page surfaces structured author-publication evidence to crawlers.
 export function selectedPublicationsJsonLd(items: PublicationItem[]) {

@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { SpeakingPage } from '@/components/khatib/SpeakingPage';
 import { getDictionary } from '@/lib/i18n';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, speakingEventsJsonLd } from '@/lib/metadata';
+import { talks } from '@/content/speaking';
 
 const dict = getDictionary('ar');
 export const metadata: Metadata = buildMetadata({
@@ -12,5 +13,25 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function Page() {
-  return <SpeakingPage locale="ar" dict={dict} />;
+  // Schema.org properties are language-neutral; we ship EN-form titles for
+  // crawler consistency on the AR mirror too.
+  const ld = speakingEventsJsonLd(
+    talks.map((t) => ({
+      date: t.date,
+      title: t.title_en,
+      venue: t.venue,
+      country: t.country,
+      link: t.link,
+    })),
+  );
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD injection
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
+      <SpeakingPage locale="ar" dict={dict} />
+    </>
+  );
 }

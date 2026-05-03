@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
 import { Mono } from './atoms';
@@ -8,8 +9,23 @@ export function SpeakingPage({ locale, dict }: { locale: Locale; dict: Dictionar
   const isAr = locale === 'ar';
   return (
     <article className="bg-deep-navy">
-      <header className="border-b border-warm-gray/15 px-4 py-20 md:px-8 md:py-28">
-        <div className="mx-auto max-w-5xl">
+      {/* Header with ambient conference photo — composition only, no specific
+          event caption per brand-kit "real captions only" rule. The image is
+          treated as ambient context (low opacity, gradient mask). */}
+      <header className="relative overflow-hidden border-b border-warm-gray/15">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/dr-khatib-international.png"
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center opacity-[0.18]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-navy/30 via-deep-navy/70 to-deep-navy" />
+        </div>
+        <div className="relative mx-auto max-w-5xl px-4 py-20 md:px-8 md:py-28">
           <SectionHeading
             number="00"
             eyebrow={isAr ? 'المحاضرات' : 'Speaking'}

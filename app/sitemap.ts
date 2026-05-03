@@ -17,6 +17,8 @@ const STATIC_PATHS = [
   '/teaching',
   '/speaking',
   '/contact',
+  '/cv',
+  '/writing',
   '/legal/privacy',
   '/legal/terms',
   '/legal/imprint',
