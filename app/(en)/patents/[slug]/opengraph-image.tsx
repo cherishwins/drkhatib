@@ -1,5 +1,5 @@
-import { ImageResponse } from 'next/og';
 import { findPatent, patents } from '@/content/patents';
+import { ImageResponse } from 'next/og';
 
 export const alt = 'Patent case study — Dr. Milad Khatib · Civil Engineering Consultancy';
 export const size = { width: 1200, height: 630 };
