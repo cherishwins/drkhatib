@@ -52,7 +52,13 @@ export default async function OpengraphImage() {
           {/* gold rule above MK */}
           <div style={{ width: 160, height: 2, background: '#C8A44E', marginBottom: 20 }} />
           {/* cube outline */}
-          <svg width="220" height="220" viewBox="0 0 512 512" style={{ position: 'absolute', top: 30 }}>
+          <svg
+            width="220"
+            height="220"
+            viewBox="0 0 512 512"
+            style={{ position: 'absolute', top: 30 }}
+            aria-hidden="true"
+          >
             <g
               stroke="#C8A44E"
               strokeWidth="3"

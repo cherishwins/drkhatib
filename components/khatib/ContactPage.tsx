@@ -1,9 +1,9 @@
+import type { Dictionary } from '@/lib/i18n';
 import type { Locale } from '@/lib/tokens';
 import { brand, profiles } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
-import { SectionHeading } from './SectionHeading';
 import { ContactForm } from './ContactForm';
+import { SectionHeading } from './SectionHeading';
+import { Mono } from './atoms';
 
 export function ContactPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isAr = locale === 'ar';
@@ -28,10 +28,7 @@ export function ContactPage({ locale, dict }: { locale: Locale; dict: Dictionary
             </Mono>
             <ul className="flex flex-col gap-2 text-sm text-warm-gray">
               <li>
-                <a
-                  href={`mailto:${brand.emailPlaceholder}`}
-                  className="text-cream hover:text-gold"
-                >
+                <a href={`mailto:${brand.emailPlaceholder}`} className="text-cream hover:text-gold">
                   {brand.emailPlaceholder}
                 </a>
               </li>
@@ -62,16 +59,44 @@ export function ContactPage({ locale, dict }: { locale: Locale; dict: Dictionary
             </Mono>
             <ul className="flex flex-col gap-2 text-sm text-warm-gray">
               <li>
-                <a className="hover:text-cream" href={`https://orcid.org/${profiles.orcid}`} target="_blank" rel="noopener noreferrer">ORCID · {profiles.orcid}</a>
+                <a
+                  className="hover:text-cream"
+                  href={`https://orcid.org/${profiles.orcid}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ORCID · {profiles.orcid}
+                </a>
               </li>
               <li>
-                <a className="hover:text-cream" href={`https://www.scopus.com/authid/detail.uri?authorId=${profiles.scopus}`} target="_blank" rel="noopener noreferrer">Scopus · {profiles.scopus}</a>
+                <a
+                  className="hover:text-cream"
+                  href={`https://www.scopus.com/authid/detail.uri?authorId=${profiles.scopus}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Scopus · {profiles.scopus}
+                </a>
               </li>
               <li>
-                <a className="hover:text-cream" href={`https://scholar.google.com/citations?user=${profiles.googleScholar}`} target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                <a
+                  className="hover:text-cream"
+                  href={`https://scholar.google.com/citations?user=${profiles.googleScholar}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Scholar
+                </a>
               </li>
               <li>
-                <a className="hover:text-cream" href={`https://www.researchgate.net/profile/${profiles.researchgate}`} target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                <a
+                  className="hover:text-cream"
+                  href={`https://www.researchgate.net/profile/${profiles.researchgate}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ResearchGate
+                </a>
               </li>
             </ul>
           </div>

@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import type { Dictionary } from '@/lib/i18n';
 import type { Locale } from '@/lib/tokens';
 import { brand, profiles } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono, Tagline } from './atoms';
-import { Wordmark } from './Wordmark';
+import Link from 'next/link';
 import { Monogram } from './Monogram';
+import { Wordmark } from './Wordmark';
+import { Mono, Tagline } from './atoms';
 
 export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const prefix = locale === 'en' ? '' : '/ar';
@@ -21,9 +21,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
               <Wordmark lang="both" />
             </div>
             <Tagline lang={locale === 'en' ? 'en' : 'ar'} />
-            <p className="max-w-xs text-sm leading-relaxed text-warm-gray">
-              {dict.footer.oeaLine}
-            </p>
+            <p className="max-w-xs text-sm leading-relaxed text-warm-gray">{dict.footer.oeaLine}</p>
             <p className="max-w-xs text-sm text-warm-gray">
               <a
                 href={`mailto:${brand.emailPlaceholder}`}
@@ -50,7 +48,9 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
 
             <FooterColumn label={dict.footer.registration}>
               <FooterLink href={`${prefix}/about`}>{dict.nav.about}</FooterLink>
-              <FooterLink href={`${prefix}/cv`}>{locale === 'en' ? 'CV' : 'السيرة الذاتية'}</FooterLink>
+              <FooterLink href={`${prefix}/cv`}>
+                {locale === 'en' ? 'CV' : 'السيرة الذاتية'}
+              </FooterLink>
               <FooterLink href={`${prefix}/editorial`}>{dict.nav.editorial}</FooterLink>
               <FooterLink href={`${prefix}/speaking`}>{dict.nav.speaking}</FooterLink>
               <FooterLink href={`${prefix}/legal/imprint`}>{dict.footer.imprint}</FooterLink>
@@ -77,9 +77,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
         {/* Gold rule with mark — separator + signature in one element */}
         <div className="mt-16 flex items-center gap-4" aria-hidden="true">
           <div className="h-px flex-1 bg-gold/40" />
-          <Mono className="text-[10px] uppercase tracking-tracked-wide text-gold/70">
-            ENG · LB
-          </Mono>
+          <Mono className="text-[10px] uppercase tracking-tracked-wide text-gold/70">ENG · LB</Mono>
           <div className="h-px flex-1 bg-gold/40" />
         </div>
 
@@ -93,18 +91,12 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           </Mono>
           <ul className="flex gap-5">
             <li>
-              <Link
-                className="transition-colors hover:text-cream"
-                href={`${prefix}/legal/privacy`}
-              >
+              <Link className="transition-colors hover:text-cream" href={`${prefix}/legal/privacy`}>
                 {dict.footer.privacy}
               </Link>
             </li>
             <li>
-              <Link
-                className="transition-colors hover:text-cream"
-                href={`${prefix}/legal/terms`}
-              >
+              <Link className="transition-colors hover:text-cream" href={`${prefix}/legal/terms`}>
                 {dict.footer.terms}
               </Link>
             </li>

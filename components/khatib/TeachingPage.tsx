@@ -1,8 +1,8 @@
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
-import { SectionHeading } from './SectionHeading';
 import { teaching } from '@/content/teaching';
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import { SectionHeading } from './SectionHeading';
+import { Mono } from './atoms';
 
 export function TeachingPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isAr = locale === 'ar';

@@ -1,4 +1,9 @@
-import { Cormorant_Garamond, IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Sans_Arabic } from 'next/font/google';
+import {
+  Cormorant_Garamond,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans,
+  IBM_Plex_Sans_Arabic,
+} from 'next/font/google';
 
 // Font weights are deliberately scoped to what the codebase actually uses.
 // Each weight Next.js fetches gets preloaded on first paint at ~25-40 KB,

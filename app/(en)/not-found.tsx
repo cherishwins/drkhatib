@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { Mono, Tagline } from '@/components/khatib/atoms';
 import { Monogram } from '@/components/khatib/Monogram';
+import { Mono, Tagline } from '@/components/khatib/atoms';
+import Link from 'next/link';
 
 export default function NotFound() {
   return (

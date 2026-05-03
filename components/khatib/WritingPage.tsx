@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
+import type { Locale } from '@/lib/tokens';
+import Link from 'next/link';
 import { SectionHeading } from './SectionHeading';
+import { Mono } from './atoms';
 
 interface ForthcomingEssay {
   numeral: string;
@@ -72,7 +72,9 @@ export function WritingPage({ locale, dict }: { locale: Locale; dict: Dictionary
               className="grid gap-4 border-l-2 border-gold/40 pl-6 md:grid-cols-[80px_1fr] md:gap-8 md:pl-8"
             >
               <div className="flex flex-col gap-2">
-                <Mono className="text-xs uppercase tracking-tracked text-gold">{essay.numeral}</Mono>
+                <Mono className="text-xs uppercase tracking-tracked text-gold">
+                  {essay.numeral}
+                </Mono>
                 <Mono className="text-[10px] uppercase tracking-tracked text-warm-gray">
                   {isAr ? 'قيد التحرير' : 'In editing'}
                 </Mono>

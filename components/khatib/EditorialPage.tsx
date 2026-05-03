@@ -1,8 +1,8 @@
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
-import { SectionHeading } from './SectionHeading';
 import { editorialGroups, editorialTotal } from '@/content/editorial-roles';
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import { SectionHeading } from './SectionHeading';
+import { Mono } from './atoms';
 
 export function EditorialPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isAr = locale === 'ar';

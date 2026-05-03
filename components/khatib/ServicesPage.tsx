@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
+import type { Locale } from '@/lib/tokens';
+import Link from 'next/link';
 import { SectionHeading } from './SectionHeading';
+import { Mono } from './atoms';
 import { PillarCard } from './cards';
 
 export function ServicesPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -154,13 +154,11 @@ export function ServicePillarPage({
               {isAr ? 'من الميدان' : 'From the field'}
             </Mono>
             <blockquote className="border-l-2 border-gold/60 pl-6 font-display text-xl italic leading-relaxed text-cream md:pl-8 md:text-2xl">
-              {pillar.fieldNote
-                .split('\n\n')
-                .map((paragraph: string, i: number) => (
-                  <p key={i} className={i > 0 ? 'mt-5' : undefined}>
-                    {paragraph}
-                  </p>
-                ))}
+              {pillar.fieldNote.split('\n\n').map((paragraph: string, i: number) => (
+                <p key={i} className={i > 0 ? 'mt-5' : undefined}>
+                  {paragraph}
+                </p>
+              ))}
             </blockquote>
             <figcaption className="font-mono text-[10px] uppercase tracking-tracked text-warm-gray">
               — {isAr ? 'الهندسة بالبرهان' : 'Engineering by proof'}

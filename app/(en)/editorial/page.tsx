@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
 import { EditorialPage } from '@/components/khatib/EditorialPage';
+import { editorialGroups } from '@/content/editorial-roles';
 import { getDictionary } from '@/lib/i18n';
 import { buildMetadata, editorialRolesJsonLd } from '@/lib/metadata';
-import { editorialGroups } from '@/content/editorial-roles';
+import type { Metadata } from 'next';
 
 const dict = getDictionary('en');
 export const metadata: Metadata = buildMetadata({

@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
 import { SpeakingPage } from '@/components/khatib/SpeakingPage';
+import { talks } from '@/content/speaking';
 import { getDictionary } from '@/lib/i18n';
 import { buildMetadata, speakingEventsJsonLd } from '@/lib/metadata';
-import { talks } from '@/content/speaking';
+import type { Metadata } from 'next';
 
 const dict = getDictionary('en');
 export const metadata: Metadata = buildMetadata({

@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
 import { AboutPage } from '@/components/khatib/AboutPage';
 import { getDictionary } from '@/lib/i18n';
 import { buildMetadata } from '@/lib/metadata';
+import type { Metadata } from 'next';
 
 const dict = getDictionary('en');
 

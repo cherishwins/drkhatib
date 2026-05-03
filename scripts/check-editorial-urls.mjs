@@ -20,8 +20,7 @@ const results = await Promise.all(
         redirect: 'follow',
         signal: controller.signal,
         headers: {
-          'User-Agent':
-            'Mozilla/5.0 (compatible; KhatibLinkAudit/1.0; +https://miladkhatib.com)',
+          'User-Agent': 'Mozilla/5.0 (compatible; KhatibLinkAudit/1.0; +https://miladkhatib.com)',
           Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         },
       });

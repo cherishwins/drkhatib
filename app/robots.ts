@@ -1,5 +1,5 @@
-import type { MetadataRoute } from 'next';
 import { brand } from '@/lib/tokens';
+import type { MetadataRoute } from 'next';
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? `https://${brand.domain}`;
 

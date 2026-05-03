@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
 import { altPath } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function LanguageToggle({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const pathname = usePathname() ?? '/';

@@ -1,13 +1,21 @@
 'use client';
 
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
 import { useEffect, useId, useRef, useState } from 'react';
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
 
-const NAV_KEYS = ['about', 'services', 'patents', 'publications', 'editorial', 'speaking', 'contact'] as const;
+const NAV_KEYS = [
+  'about',
+  'services',
+  'patents',
+  'publications',
+  'editorial',
+  'speaking',
+  'contact',
+] as const;
 
 export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
@@ -16,7 +24,9 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
   const pathname = usePathname();
   const prefix = locale === 'en' ? '' : '/ar';
 
-  // Close on route change.
+  // Close on route change. The effect body doesn't reference pathname, but its
+  // value-change is the trigger we want — Biome's exhaustive-deps rule misfires here.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the trigger
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
@@ -47,10 +57,26 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? (locale === 'ar' ? 'إغلاق القائمة' : 'Close menu') : (locale === 'ar' ? 'فتح القائمة' : 'Open menu')}
+        aria-label={
+          open
+            ? locale === 'ar'
+              ? 'إغلاق القائمة'
+              : 'Close menu'
+            : locale === 'ar'
+              ? 'فتح القائمة'
+              : 'Open menu'
+        }
         className="inline-flex h-10 w-10 items-center justify-center border border-warm-gray/30 text-cream hover:border-gold hover:text-gold md:hidden"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
           {open ? (
             <>
               <line x1="6" y1="6" x2="18" y2="18" />
@@ -72,7 +98,7 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
           role="dialog"
           aria-modal="true"
           aria-label={locale === 'ar' ? 'القائمة الرئيسية' : 'Primary navigation'}
-          className="fixed inset-0 top-[57px] z-40 flex flex-col bg-deep-navy/98 backdrop-blur-md md:hidden"
+          className="route-fade fixed inset-0 top-[var(--header-h)] z-40 flex flex-col bg-deep-navy/[0.98] backdrop-blur-md md:hidden"
         >
           {/* Click-outside dismissal: tapping the overlay (not links) closes. */}
           <button
@@ -82,7 +108,10 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
             className="absolute inset-0 -z-10 cursor-default"
             tabIndex={-1}
           />
-          <nav aria-label={locale === 'ar' ? 'القائمة الرئيسية' : 'Primary'} className="flex flex-col px-6 py-8">
+          <nav
+            aria-label={locale === 'ar' ? 'القائمة الرئيسية' : 'Primary'}
+            className="flex flex-col px-6 py-8"
+          >
             <ul className="flex flex-col gap-1 font-mono text-sm uppercase tracking-tracked text-cream">
               {NAV_KEYS.map((key) => {
                 const base = `${prefix}/${key}`;
@@ -98,9 +127,7 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
                         active && 'text-gold',
                       )}
                     >
-                      {active && (
-                        <span aria-hidden="true" className="block h-px w-6 bg-gold" />
-                      )}
+                      {active && <span aria-hidden="true" className="block h-px w-6 bg-gold" />}
                       {dict.nav[key]}
                     </Link>
                   </li>

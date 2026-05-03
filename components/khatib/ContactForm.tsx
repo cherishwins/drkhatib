@@ -1,9 +1,9 @@
 'use client';
 
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
 import { useState } from 'react';
 import { z } from 'zod';
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
 import { Mono } from './atoms';
 
 const TopicEnum = z.enum(['structural', 'geotechnical', 'forensic', 'patent', 'academic', 'other']);
@@ -169,9 +169,7 @@ function Field({
         {required && <span aria-hidden="true"> *</span>}
       </label>
       {children}
-      {error && (
-        <Mono className="text-[10px] uppercase tracking-tracked text-danger">{error}</Mono>
-      )}
+      {error && <Mono className="text-[10px] uppercase tracking-tracked text-danger">{error}</Mono>}
     </div>
   );
 }

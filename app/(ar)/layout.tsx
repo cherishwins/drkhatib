@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import '../globals.css';
+import { Analytics } from '@/components/khatib/Analytics';
+import { SiteFooter } from '@/components/khatib/SiteFooter';
+import { SiteHeader } from '@/components/khatib/SiteHeader';
 import { fontVariables } from '@/lib/fonts';
 import { getDictionary } from '@/lib/i18n';
 import { brand } from '@/lib/tokens';
-import { SiteHeader } from '@/components/khatib/SiteHeader';
-import { SiteFooter } from '@/components/khatib/SiteFooter';
-import { Analytics } from '@/components/khatib/Analytics';
 
 const dict = getDictionary('ar');
 

@@ -33,10 +33,8 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
   //   the same segment, so we set the URL explicitly here for nested pages.
   // - When a future page wants a custom OG, pass `ogImage` to override.
   const isPatentDetail = /^\/(?:ar\/)?patents\/[^/]+$/.test(input.path);
-  const ogImage =
-    input.ogImage ?? (isPatentDetail ? undefined : `${SITE}/opengraph-image`);
-  const ogImageAlt =
-    input.ogImageAlt ?? 'Dr. Milad Khatib · Civil Engineering Consultancy.';
+  const ogImage = input.ogImage ?? (isPatentDetail ? undefined : `${SITE}/opengraph-image`);
+  const ogImageAlt = input.ogImageAlt ?? 'Dr. Milad Khatib · Civil Engineering Consultancy.';
 
   return {
     title: input.title,
@@ -105,9 +103,7 @@ export function personJsonLd() {
       { '@type': 'Organization', name: 'SPSC Sustainability Programme' },
       { '@type': 'Organization', name: 'ACSE' },
     ],
-    alumniOf: [
-      { '@type': 'EducationalOrganization', name: 'Beirut Arab University' },
-    ],
+    alumniOf: [{ '@type': 'EducationalOrganization', name: 'Beirut Arab University' }],
     knowsLanguage: ['en', 'fr', 'it', 'ar'],
     address: {
       '@type': 'PostalAddress',
@@ -240,7 +236,9 @@ export function editorialRolesJsonLd(roles: EditorialRoleEntry[]) {
         memberOf: {
           '@type': 'Organization',
           name: r.name,
-          ...(r.publisher ? { parentOrganization: { '@type': 'Organization', name: r.publisher } } : {}),
+          ...(r.publisher
+            ? { parentOrganization: { '@type': 'Organization', name: r.publisher } }
+            : {}),
           ...(r.link ? { url: r.link } : {}),
           areaServed: r.region,
         },

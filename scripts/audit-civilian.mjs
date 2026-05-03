@@ -4,7 +4,7 @@
 // Per Dr. Khatib's WhatsApp directive (2 May 2026): no military references,
 // anywhere — page bodies, JSON, alt text, comments, file names, anywhere.
 
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { extname, join } from 'node:path';
 
 const ROOT = process.cwd();

@@ -1,5 +1,5 @@
-import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
 import { SectionHeading } from './SectionHeading';
 
 type LegalKey = 'privacy' | 'terms' | 'imprint';
@@ -19,11 +19,7 @@ export function LegalPage({
     <article className="bg-deep-navy">
       <header className="border-b border-warm-gray/15 px-4 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-3xl">
-          <SectionHeading
-            number="00"
-            eyebrow={isAr ? 'قانوني' : 'Legal'}
-            title={block.title}
-          />
+          <SectionHeading number="00" eyebrow={isAr ? 'قانوني' : 'Legal'} title={block.title} />
         </div>
       </header>
       <section className="px-4 py-16 md:px-8 md:py-20">

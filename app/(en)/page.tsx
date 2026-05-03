@@ -1,5 +1,5 @@
-import type { Metadata } from 'next';
 import { HomePage } from '@/components/khatib/HomePage';
+import { publications } from '@/content/publications';
 import { getDictionary } from '@/lib/i18n';
 import {
   buildMetadata,
@@ -7,7 +7,7 @@ import {
   selectedPublicationsJsonLd,
   websiteJsonLd,
 } from '@/lib/metadata';
-import { publications } from '@/content/publications';
+import type { Metadata } from 'next';
 
 const dict = getDictionary('en');
 

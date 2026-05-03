@@ -32,9 +32,7 @@ export function PublicationItem({
   const linkLabel = pub.externalLabel ?? (pub.doi ? `${doiLabel} ${pub.doi}` : viewLabel);
   return (
     <article className="grid grid-cols-[44px_1fr] gap-4 border-t border-warm-gray/15 py-5 md:grid-cols-[60px_1fr] md:gap-6">
-      <Mono className="pt-1 text-xs text-gold md:text-sm">
-        {String(pub.num).padStart(2, '0')}
-      </Mono>
+      <Mono className="pt-1 text-xs text-gold md:text-sm">{String(pub.num).padStart(2, '0')}</Mono>
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-tracked text-warm-gray">
           <span>{pub.year}</span>

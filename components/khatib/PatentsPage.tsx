@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import type { Locale } from '@/lib/tokens';
+import { type Patent, patents } from '@/content/patents';
 import type { Dictionary } from '@/lib/i18n';
-import { Mono, GoldRule } from './atoms';
+import type { Locale } from '@/lib/tokens';
+import Link from 'next/link';
 import { SectionHeading } from './SectionHeading';
+import { GoldRule, Mono } from './atoms';
 import { PatentCard } from './cards';
-import { patents, type Patent } from '@/content/patents';
 
 export function PatentsIndexPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isAr = locale === 'ar';
@@ -183,7 +183,11 @@ export function PatentDetailPage({
   );
 }
 
-function MetaItem({ label, value, pending = false }: { label: string; value: string; pending?: boolean }) {
+function MetaItem({
+  label,
+  value,
+  pending = false,
+}: { label: string; value: string; pending?: boolean }) {
   return (
     <div className="flex flex-col gap-1">
       <Mono className="text-[10px] uppercase tracking-tracked text-warm-gray">{label}</Mono>

@@ -1,7 +1,7 @@
-import type { Metadata } from 'next';
 import { HomePage } from '@/components/khatib/HomePage';
 import { getDictionary } from '@/lib/i18n';
 import { buildMetadata, personJsonLd, websiteJsonLd } from '@/lib/metadata';
+import type { Metadata } from 'next';
 
 const dict = getDictionary('ar');
 

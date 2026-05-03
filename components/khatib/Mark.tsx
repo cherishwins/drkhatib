@@ -42,12 +42,7 @@ export function Mark({ variant = 'navy', className }: MarkProps) {
         >
           د. ميلاد الخطيب
         </div>
-        <div
-          lang="ar"
-          dir="rtl"
-          className="font-arabic text-xs"
-          style={{ color: colors.arabic }}
-        >
+        <div lang="ar" dir="rtl" className="font-arabic text-xs" style={{ color: colors.arabic }}>
           الاستشارات الهندسية المدنية
         </div>
       </div>

@@ -1,14 +1,14 @@
 'use client';
 
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Wordmark } from './Wordmark';
 import { LanguageToggle } from './LanguageToggle';
-import { Monogram } from './Monogram';
 import { MobileMenu } from './MobileMenu';
+import { Monogram } from './Monogram';
+import { Wordmark } from './Wordmark';
 
 const NAV_KEYS = [
   'about',

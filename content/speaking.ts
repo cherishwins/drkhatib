@@ -172,8 +172,7 @@ export const talks: Talk[] = [
     date: 'May 2017',
     title_en:
       'Punching Shear Analysis of Bonded Post-Tensioned Slabs with Inverted-U Shaped Reinforcements',
-    title_ar:
-      'تحليل قصّ الثقب في البلاطات سابقة الإجهاد المرتبطة بالتسليح على شكل U المقلوب',
+    title_ar: 'تحليل قصّ الثقب في البلاطات سابقة الإجهاد المرتبطة بالتسليح على شكل U المقلوب',
     venue: 'Engineering Project Day, Beirut Arab University',
     country: 'Lebanon',
   },

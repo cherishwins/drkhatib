@@ -1,9 +1,9 @@
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { GoldRule, Mono } from './atoms';
-import { SectionHeading } from './SectionHeading';
-import { TimelineRow } from './cards';
 import { timeline } from '@/content/timeline';
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import { SectionHeading } from './SectionHeading';
+import { GoldRule, Mono } from './atoms';
+import { TimelineRow } from './cards';
 
 export function AboutPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const isAr = locale === 'ar';

@@ -1,14 +1,14 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { patents } from '@/content/patents';
+import { publications, totalCount } from '@/content/publications';
+import type { Dictionary } from '@/lib/i18n';
 import type { Locale } from '@/lib/tokens';
 import { brand, profiles } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono, Tagline, GoldRule } from './atoms';
-import { PillarCard, PatentCard } from './cards';
+import Image from 'next/image';
+import Link from 'next/link';
 import { PublicationItem } from './PublicationItem';
 import { SectionHeading } from './SectionHeading';
-import { publications, totalCount } from '@/content/publications';
-import { patents } from '@/content/patents';
+import { GoldRule, Mono, Tagline } from './atoms';
+import { PatentCard, PillarCard } from './cards';
 
 // Six anchor publications. Each ties to a methodology referenced elsewhere on
 // the site (services pages, patent case studies, About credentials):
@@ -22,9 +22,9 @@ const SELECTED_PUBLICATION_NUMS = [29, 27, 14, 30, 39, 12];
 
 export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const prefix = locale === 'en' ? '' : '/ar';
-  const selected = SELECTED_PUBLICATION_NUMS.map((n) => publications.find((p) => p.num === n)).filter(
-    (p): p is NonNullable<typeof p> => Boolean(p),
-  );
+  const selected = SELECTED_PUBLICATION_NUMS.map((n) =>
+    publications.find((p) => p.num === n),
+  ).filter((p): p is NonNullable<typeof p> => Boolean(p));
   const book = publications.find((p) => p.isBook);
   const isAr = locale === 'ar';
 
@@ -35,7 +35,10 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
         <div className="absolute inset-0 bg-iso-grid opacity-50" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-[5fr_6fr] md:gap-16 md:px-8 md:py-28 lg:py-36">
           {/* Portrait column */}
-          <div className="order-2 animate-fade-up md:order-1" style={{ '--delay': '120ms' } as React.CSSProperties}>
+          <div
+            className="order-2 animate-fade-up md:order-1"
+            style={{ '--delay': '120ms' } as React.CSSProperties}
+          >
             <div className="relative aspect-[3/4] overflow-hidden border border-gold/30 bg-deep-navy">
               <Image
                 src="/images/dr-khatib-official-2026.jpg"
@@ -95,12 +98,17 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
 
         {/* Scroll cue */}
         <div className="pointer-events-none absolute bottom-2 left-1/2 hidden -translate-x-1/2 md:block">
-          <a
-            href="#main-content"
-            aria-label={isAr ? 'تخطّي إلى المحتوى' : 'Scroll to content'}
-            className="scroll-cue pointer-events-auto block text-gold"
-          >
-            <svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+          <a href="#main-content" className="scroll-cue pointer-events-auto block text-gold">
+            <span className="sr-only">{isAr ? 'تخطّي إلى المحتوى' : 'Scroll to content'}</span>
+            <svg
+              width="14"
+              height="20"
+              viewBox="0 0 14 20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
+              aria-hidden="true"
+            >
               <path d="M2 8 L7 14 L12 8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
@@ -135,10 +143,7 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
           </Mono>
           <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 md:gap-y-12 xl:grid-cols-6">
             {dict.home.byTheNumbers.items.map((item) => (
-              <li
-                key={item.label}
-                className="flex flex-col gap-3 border-l border-gold/40 pl-5"
-              >
+              <li key={item.label} className="flex flex-col gap-3 border-l border-gold/40 pl-5">
                 <span className="font-display text-3xl font-semibold leading-none text-cream md:text-4xl lg:text-5xl">
                   {item.value}
                 </span>
@@ -178,7 +183,10 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
           />
           <ul className="mt-10 grid gap-6 md:grid-cols-3 md:gap-8">
             {dict.home.press.map((item) => (
-              <li key={item.title} className="flex flex-col gap-3 border-l-2 border-gold/40 bg-navy/30 p-6">
+              <li
+                key={item.title}
+                className="flex flex-col gap-3 border-l-2 border-gold/40 bg-navy/30 p-6"
+              >
                 <Mono className="text-[10px] uppercase tracking-tracked text-gold">
                   {item.label}
                 </Mono>
@@ -216,9 +224,7 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
                 <Mono className="text-[10px] uppercase tracking-tracked text-gold">
                   {isAr ? 'كتاب' : 'Book'} · {book.year}
                 </Mono>
-                <Mono className="text-[10px] uppercase tracking-tracked text-gold/70">
-                  Amazon
-                </Mono>
+                <Mono className="text-[10px] uppercase tracking-tracked text-gold/70">Amazon</Mono>
               </div>
               <h3 className="mt-3 font-display text-2xl font-semibold text-cream md:text-3xl">
                 {book.title}
@@ -304,7 +310,11 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
           </p>
           <p
             dir={isAr ? 'ltr' : 'rtl'}
-            className={isAr ? 'font-display text-xl italic text-warm-gray md:text-2xl' : 'font-arabic text-xl text-warm-gray md:text-2xl'}
+            className={
+              isAr
+                ? 'font-display text-xl italic text-warm-gray md:text-2xl'
+                : 'font-arabic text-xl text-warm-gray md:text-2xl'
+            }
           >
             {dict.home.closingPair}
           </p>
@@ -313,7 +323,10 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
             <Mono className="text-[10px] uppercase tracking-tracked text-gold">
               {dict.home.contactMini.label}
             </Mono>
-            <a className="text-base text-cream hover:text-gold" href={`mailto:${brand.emailPlaceholder}`}>
+            <a
+              className="text-base text-cream hover:text-gold"
+              href={`mailto:${brand.emailPlaceholder}`}
+            >
               {brand.emailPlaceholder}
             </a>
             <Link

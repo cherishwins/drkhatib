@@ -28,14 +28,14 @@ html {
 
 body {
   font-family: var(--font-plex-sans), system-ui, sans-serif;
-  font-feature-settings: 'kern', 'liga', 'ss01';
+  font-feature-settings: "kern", "liga", "ss01";
 }
 
-html[lang='ar'] body {
+html[lang="ar"] body {
   font-family: var(--font-plex-arabic), Tahoma, Arial, sans-serif;
 }
 
-[dir='rtl'] {
+[dir="rtl"] {
   text-align: right;
 }
 
@@ -79,8 +79,7 @@ html[lang='ar'] body {
 
 /* Isometric grid texture utility (4% opacity) */
 .bg-iso-grid {
-  background-image:
-    linear-gradient(60deg, rgba(200, 164, 78, 0.04) 0.5px, transparent 0.5px),
+  background-image: linear-gradient(60deg, rgba(200, 164, 78, 0.04) 0.5px, transparent 0.5px),
     linear-gradient(-60deg, rgba(200, 164, 78, 0.04) 0.5px, transparent 0.5px),
     linear-gradient(0deg, rgba(200, 164, 78, 0.04) 0.5px, transparent 0.5px);
   background-size: 32px 32px;
@@ -145,11 +144,11 @@ html[lang='ar'] body {
     break-inside: avoid;
   }
   a[href]::after {
-    content: '';
+    content: "";
   }
   .skip-link,
-  header[role='banner'],
-  footer[role='contentinfo'] {
+  header[role="banner"],
+  footer[role="contentinfo"] {
     display: none !important;
   }
 }

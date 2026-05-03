@@ -1,13 +1,20 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import type { Locale } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
-import { PublicationItem, type PublicationType } from './PublicationItem';
 import { publications, totalCount } from '@/content/publications';
+import type { Dictionary } from '@/lib/i18n';
+import type { Locale } from '@/lib/tokens';
+import { useMemo, useState } from 'react';
+import { PublicationItem, type PublicationType } from './PublicationItem';
+import { Mono } from './atoms';
 
-const TOPIC_ORDER = ['post-tension', 'geotech', 'water', 'sustainable', 'seismic', 'other'] as const;
+const TOPIC_ORDER = [
+  'post-tension',
+  'geotech',
+  'water',
+  'sustainable',
+  'seismic',
+  'other',
+] as const;
 const TYPE_ORDER: PublicationType[] = ['journal', 'book-chapter', 'conference', 'book', 'thesis'];
 
 export function PublicationsPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -159,9 +166,7 @@ export function PublicationsPage({ locale, dict }: { locale: Locale; dict: Dicti
                   onRemove={() => setType('')}
                 />
               )}
-              {search && (
-                <Chip label={`"${search}"`} onRemove={() => setSearch('')} />
-              )}
+              {search && <Chip label={`"${search}"`} onRemove={() => setSearch('')} />}
               <Mono className="ms-auto text-[10px] uppercase tracking-tracked text-gold">
                 {filtered.length} / {totalCount}
               </Mono>
@@ -201,7 +206,15 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
         aria-hidden="true"
         className="inline-flex h-4 w-4 items-center justify-center rounded-full text-gold/70 transition-colors group-hover:text-gold"
       >
-        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <svg
+          width="8"
+          height="8"
+          viewBox="0 0 8 8"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          aria-hidden="true"
+        >
           <path d="M1 1 L7 7 M7 1 L1 7" strokeLinecap="round" />
         </svg>
       </span>

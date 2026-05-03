@@ -1,13 +1,13 @@
+import { editorialGroups, editorialTotal } from '@/content/editorial-roles';
+import { patents } from '@/content/patents';
+import { totalCount as pubCount } from '@/content/publications';
+import { teaching } from '@/content/teaching';
+import { timeline } from '@/content/timeline';
+import type { Dictionary } from '@/lib/i18n';
 import type { Locale } from '@/lib/tokens';
 import { brand, profiles } from '@/lib/tokens';
-import type { Dictionary } from '@/lib/i18n';
-import { Mono } from './atoms';
 import { PrintButton } from './PrintButton';
-import { timeline } from '@/content/timeline';
-import { teaching } from '@/content/teaching';
-import { editorialGroups, editorialTotal } from '@/content/editorial-roles';
-import { totalCount as pubCount } from '@/content/publications';
-import { patents } from '@/content/patents';
+import { Mono } from './atoms';
 
 // Single-page printable CV. Cream background; navy text; no images; no JS.
 // Print-friendly: print:bg-white, print:hidden controls below.
@@ -115,9 +115,7 @@ export function CvPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 <Mono className="text-[11px] text-gold-dark">
                   {p.year} · {p.jurisdiction}
                 </Mono>
-                <p className="mt-1 font-medium text-deep-navy">
-                  {isAr ? p.title_ar : p.title_en}
-                </p>
+                <p className="mt-1 font-medium text-deep-navy">{isAr ? p.title_ar : p.title_en}</p>
                 <p className="mt-1 text-sm text-stone">
                   {isAr ? 'المخترعون' : 'Inventors'}: {p.inventors}
                 </p>
@@ -132,9 +130,7 @@ export function CvPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         </Section>
 
         {/* Publications counter */}
-        <Section
-          label={`${dict.nav.publications} (${pubCount})`}
-        >
+        <Section label={`${dict.nav.publications} (${pubCount})`}>
           <p className="text-sm text-stone">
             {isAr
               ? `قائمة كاملة بـ ${pubCount} منشوراً متاحة على ${brand.domain}/ar/publications`

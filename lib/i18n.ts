@@ -1,6 +1,6 @@
-import type { Locale } from './tokens';
-import en from '@/content/translations/en.json';
 import ar from '@/content/translations/ar.json';
+import en from '@/content/translations/en.json';
+import type { Locale } from './tokens';
 
 const dictionaries = { en, ar } as const;
 

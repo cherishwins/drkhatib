@@ -1,9 +1,9 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { PatentDetailPage } from '@/components/khatib/PatentsPage';
+import { findPatent, patents } from '@/content/patents';
 import { getDictionary } from '@/lib/i18n';
 import { buildMetadata, patentJsonLd } from '@/lib/metadata';
-import { findPatent, patents } from '@/content/patents';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 const dict = getDictionary('en');
 
