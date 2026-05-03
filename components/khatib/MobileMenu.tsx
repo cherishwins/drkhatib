@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { Locale } from '@/lib/tokens';
 import type { Dictionary } from '@/lib/i18n';
@@ -83,17 +84,28 @@ export function MobileMenu({ locale, dict }: { locale: Locale; dict: Dictionary 
           />
           <nav aria-label={locale === 'ar' ? 'القائمة الرئيسية' : 'Primary'} className="flex flex-col px-6 py-8">
             <ul className="flex flex-col gap-1 font-mono text-sm uppercase tracking-tracked text-cream">
-              {NAV_KEYS.map((key) => (
-                <li key={key}>
-                  <Link
-                    href={`${prefix}/${key}`}
-                    onClick={() => setOpen(false)}
-                    className="block border-b border-warm-gray/15 py-4 transition-colors hover:text-gold"
-                  >
-                    {dict.nav[key]}
-                  </Link>
-                </li>
-              ))}
+              {NAV_KEYS.map((key) => {
+                const base = `${prefix}/${key}`;
+                const active = pathname === base || pathname?.startsWith(`${base}/`);
+                return (
+                  <li key={key}>
+                    <Link
+                      href={base}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? 'page' : undefined}
+                      className={clsx(
+                        'flex items-center gap-3 border-b border-warm-gray/15 py-4 transition-colors hover:text-gold',
+                        active && 'text-gold',
+                      )}
+                    >
+                      {active && (
+                        <span aria-hidden="true" className="block h-px w-6 bg-gold" />
+                      )}
+                      {dict.nav[key]}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

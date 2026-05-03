@@ -35,7 +35,7 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
         <div className="absolute inset-0 bg-iso-grid opacity-50" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-[5fr_6fr] md:gap-16 md:px-8 md:py-28 lg:py-36">
           {/* Portrait column */}
-          <div className="order-2 md:order-1">
+          <div className="order-2 animate-fade-up md:order-1" style={{ '--delay': '120ms' } as React.CSSProperties}>
             <div className="relative aspect-[3/4] overflow-hidden border border-gold/30 bg-deep-navy">
               <Image
                 src="/images/dr-khatib-official-2026.jpg"
@@ -45,70 +45,104 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
                 sizes="(min-width: 768px) 45vw, 100vw"
                 className="object-cover object-[center_top]"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-deep-navy/70" />
-              <div className="absolute bottom-0 left-0 right-0 flex flex-col gap-1 bg-deep-navy/85 px-4 py-3 backdrop-blur-sm">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-deep-navy/60" />
+              <div className="absolute bottom-0 left-0 right-0 bg-deep-navy/80 px-4 py-3 backdrop-blur-sm">
                 <Mono className="text-[10px] uppercase tracking-tracked text-gold">
                   {dict.meta.city} · 2026
                 </Mono>
-                <span className="text-xs text-warm-gray">
-                  {isAr ? 'الصورة الرسمية للدكتور الخطيب' : 'Authorised portrait of Dr. Khatib'}
-                </span>
               </div>
             </div>
           </div>
 
           {/* Type column */}
           <div className="order-1 flex flex-col gap-6 md:order-2 md:gap-8">
-            <Mono className="text-[11px] uppercase tracking-tracked text-gold">
+            <Mono
+              className="animate-fade-up text-[11px] uppercase tracking-tracked text-gold"
+              style={{ '--delay': '0ms' } as React.CSSProperties}
+            >
               {dict.home.eyebrow}
             </Mono>
-            <GoldRule width={64} />
-            <h1 className="font-display text-4xl font-semibold leading-[1.05] text-cream md:text-6xl lg:text-7xl">
+            <div className="animate-fade-up" style={{ '--delay': '60ms' } as React.CSSProperties}>
+              <GoldRule width={64} />
+            </div>
+            <h1
+              className="animate-fade-up font-display text-4xl font-semibold leading-[1.05] text-cream md:text-6xl lg:text-7xl"
+              style={{ '--delay': '120ms' } as React.CSSProperties}
+            >
               {dict.home.h1}
             </h1>
-            <p className="font-mono text-sm uppercase tracking-tracked-wide text-gold md:text-base">
+            <p
+              className="animate-fade-up font-mono text-sm uppercase tracking-tracked-wide text-gold md:text-base"
+              style={{ '--delay': '180ms' } as React.CSSProperties}
+            >
               {dict.home.subline}
             </p>
             <p
               dir={isAr ? 'rtl' : 'ltr'}
-              className="font-arabic text-2xl text-warm-gray md:text-3xl"
+              className="animate-fade-up font-arabic text-2xl text-warm-gray md:text-3xl"
+              style={{ '--delay': '240ms' } as React.CSSProperties}
             >
               {isAr ? brand.shortNameEn : brand.shortNameAr}
             </p>
-            <Tagline lang={isAr ? 'ar' : 'en'} className="mt-4 text-xl md:text-2xl" />
+            <div
+              className="animate-fade-up mt-4"
+              style={{ '--delay': '300ms' } as React.CSSProperties}
+            >
+              <Tagline lang={isAr ? 'ar' : 'en'} className="text-xl md:text-2xl" />
+            </div>
           </div>
         </div>
 
-        {/* Credential strip */}
-        <div className="relative border-t border-warm-gray/15 bg-deep-navy/80">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 py-5 font-mono text-[11px] uppercase tracking-tracked text-warm-gray md:text-xs">
-            {dict.home.credentials.map((credential, i) => (
-              <span key={credential} className="flex items-center gap-6">
-                <span>{credential}</span>
-                {i < dict.home.credentials.length - 1 && (
-                  <span aria-hidden="true" className="text-gold/60">
-                    |
-                  </span>
-                )}
-              </span>
-            ))}
-          </div>
+        {/* Scroll cue */}
+        <div className="pointer-events-none absolute bottom-2 left-1/2 hidden -translate-x-1/2 md:block">
+          <a
+            href="#main-content"
+            aria-label={isAr ? 'تخطّي إلى المحتوى' : 'Scroll to content'}
+            className="scroll-cue pointer-events-auto block text-gold"
+          >
+            <svg width="14" height="20" viewBox="0 0 14 20" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+              <path d="M2 8 L7 14 L12 8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      {/* Credential strip — own section so the hero's scroll cue lands cleanly here */}
+      <section
+        id="main-content"
+        aria-label={isAr ? 'بطاقة المؤهلات' : 'Credentials'}
+        className="border-t border-warm-gray/15 bg-deep-navy/80"
+      >
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-4 py-5 font-mono text-[11px] uppercase tracking-tracked text-warm-gray md:text-xs">
+          {dict.home.credentials.map((credential, i) => (
+            <span key={credential} className="flex items-center gap-6">
+              <span>{credential}</span>
+              {i < dict.home.credentials.length - 1 && (
+                <span aria-hidden="true" className="text-gold/60">
+                  |
+                </span>
+              )}
+            </span>
+          ))}
         </div>
       </section>
 
       {/* BY THE NUMBERS — calm credential strip, six items */}
-      <section className="border-y border-warm-gray/15 bg-deep-navy px-4 py-12 md:px-8 md:py-16">
+      <section className="border-b border-warm-gray/15 bg-deep-navy px-4 py-14 md:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
-          <Mono className="mb-6 block text-[11px] uppercase tracking-tracked text-gold">
+          <Mono className="mb-8 block text-[11px] uppercase tracking-tracked text-gold">
             {dict.home.byTheNumbers.eyebrow}
           </Mono>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 lg:grid-cols-6">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 md:gap-y-12 xl:grid-cols-6">
             {dict.home.byTheNumbers.items.map((item) => (
-              <li key={item.label} className="flex flex-col gap-2 border-l border-gold/30 pl-4">
-                <span className="font-display text-3xl font-semibold leading-none text-cream md:text-4xl">
+              <li
+                key={item.label}
+                className="flex flex-col gap-3 border-l border-gold/40 pl-5"
+              >
+                <span className="font-display text-3xl font-semibold leading-none text-cream md:text-4xl lg:text-5xl">
                   {item.value}
                 </span>
-                <span className="font-mono text-[10px] uppercase leading-snug tracking-tracked text-warm-gray">
+                <span className="font-mono text-[10px] uppercase leading-relaxed tracking-tracked text-warm-gray">
                   {item.label}
                 </span>
               </li>

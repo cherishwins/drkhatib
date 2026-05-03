@@ -13,6 +13,7 @@
   --color-cream: #f5f1e8;
   --color-warm-gray: #9a9589;
   --color-stone: #5a5651;
+  --header-h: 60px;
 }
 
 html {
@@ -20,6 +21,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
   background-color: var(--color-deep-navy);
   color: #f5f1e8;
 }
@@ -45,8 +47,9 @@ html[lang='ar'] body {
 /* Focus ring — gold on navy, navy on cream */
 :focus-visible {
   outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
+  outline-offset: 4px;
   border-radius: 2px;
+  transition: outline-offset 0.12s ease;
 }
 
 .bg-cream :focus-visible,
@@ -83,13 +86,51 @@ html[lang='ar'] body {
   background-size: 32px 32px;
 }
 
-/* Reduce motion */
+/* Hero entry — fade-up. Cascades by --delay so caller can stagger. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Hero scroll cue — sits at bottom of hero on first paint, fades after scroll */
+@keyframes scroll-cue-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+}
+.scroll-cue {
+  animation: scroll-cue-bob 1.6s ease-in-out infinite;
+}
+
+/* Reduce motion — kill all animation, scroll, transition */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+  .animate-fade-up {
+    opacity: 1;
+    transform: none;
   }
 }

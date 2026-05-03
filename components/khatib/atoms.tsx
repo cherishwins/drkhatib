@@ -58,6 +58,18 @@ export function Citation({ children, className }: { children: React.ReactNode; c
   return <cite className={clsx('text-sm not-italic text-warm-gray', className)}>{children}</cite>;
 }
 
-export function Mono({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <span className={clsx('font-mono', className)}>{children}</span>;
+export function Mono({
+  children,
+  className,
+  style,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <span className={clsx('font-mono', className)} style={style}>
+      {children}
+    </span>
+  );
 }
