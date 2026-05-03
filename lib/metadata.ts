@@ -25,10 +25,19 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
   const ogLocale = locale === 'en' ? 'en_US' : 'ar_LB';
   const altLocale = otherLocale === 'en' ? 'en_US' : 'ar_LB';
 
-  // OG/Twitter images intentionally omitted here: Next 14's file-convention
-  // (app/opengraph-image.tsx and per-segment overrides like
-  // app/(en)/patents/[slug]/opengraph-image.tsx) populates them automatically
-  // for the closest segment. Adding `images` here would shadow that.
+  // OG image strategy:
+  // - The /patents/[slug] routes have a co-located opengraph-image.tsx that
+  //   takes precedence automatically — those pages skip this default.
+  // - Every other route gets the site-default render at the route-group root
+  //   (app/(en)/opengraph-image.tsx). The file convention only applies at
+  //   the same segment, so we set the URL explicitly here for nested pages.
+  // - When a future page wants a custom OG, pass `ogImage` to override.
+  const isPatentDetail = /^\/(?:ar\/)?patents\/[^/]+$/.test(input.path);
+  const ogImage =
+    input.ogImage ?? (isPatentDetail ? undefined : `${SITE}/opengraph-image`);
+  const ogImageAlt =
+    input.ogImageAlt ?? 'Dr. Milad Khatib · Civil Engineering Consultancy.';
+
   return {
     title: input.title,
     description: input.description,
@@ -48,6 +57,13 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       type: input.ogType ?? 'website',
       locale: ogLocale,
       alternateLocale: [altLocale],
+      ...(ogImage
+        ? {
+            images: [
+              { url: ogImage, width: 1200, height: 630, alt: ogImageAlt, type: 'image/png' },
+            ],
+          }
+        : {}),
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(input.modifiedTime ? { modifiedTime: input.modifiedTime } : {}),
     },
@@ -55,6 +71,7 @@ export function buildMetadata(input: BuildMetadataInput): Metadata {
       card: 'summary_large_image',
       title: input.title,
       description: input.description,
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
     robots: {
       index: process.env.VERCEL_ENV !== 'preview',
