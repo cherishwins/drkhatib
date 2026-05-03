@@ -140,6 +140,34 @@ export function PublicationsPage({ locale, dict }: { locale: Locale; dict: Dicti
         </aside>
 
         <section>
+          {/* Active-filter chips — visible only when at least one filter is on */}
+          {(topic || year || type || search) && (
+            <div className="mb-6 flex flex-wrap items-center gap-2 border-b border-warm-gray/15 pb-5">
+              <Mono className="text-[10px] uppercase tracking-tracked text-warm-gray">
+                {isAr ? 'مرشِّحات نشطة' : 'Active'}:
+              </Mono>
+              {topic && (
+                <Chip
+                  label={(dict.publications.topics as Record<string, string>)[topic] ?? topic}
+                  onRemove={() => setTopic('')}
+                />
+              )}
+              {year && <Chip label={year} onRemove={() => setYear('')} />}
+              {type && (
+                <Chip
+                  label={(dict.publications.types as Record<string, string>)[type] ?? type}
+                  onRemove={() => setType('')}
+                />
+              )}
+              {search && (
+                <Chip label={`"${search}"`} onRemove={() => setSearch('')} />
+              )}
+              <Mono className="ms-auto text-[10px] uppercase tracking-tracked text-gold">
+                {filtered.length} / {totalCount}
+              </Mono>
+            </div>
+          )}
+
           {filtered.length === 0 ? (
             <p className="text-warm-gray">{dict.publications.filters.noResults}</p>
           ) : (
@@ -157,6 +185,27 @@ export function PublicationsPage({ locale, dict }: { locale: Locale; dict: Dicti
         </section>
       </div>
     </article>
+  );
+}
+
+function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onRemove}
+      aria-label={`Remove filter: ${label}`}
+      className="group inline-flex items-center gap-2 border border-gold/40 bg-gold/10 py-1 ps-3 pe-2 font-mono text-[10px] uppercase tracking-tracked text-gold transition-colors hover:border-gold hover:bg-gold/20"
+    >
+      <span>{label}</span>
+      <span
+        aria-hidden="true"
+        className="inline-flex h-4 w-4 items-center justify-center rounded-full text-gold/70 transition-colors group-hover:text-gold"
+      >
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <path d="M1 1 L7 7 M7 1 L1 7" strokeLinecap="round" />
+        </svg>
+      </span>
+    </button>
   );
 }
 

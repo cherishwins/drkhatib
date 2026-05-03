@@ -46,6 +46,20 @@ export function CvPage({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           </div>
         </header>
 
+        {/* By-the-numbers strip — six stats, condensed for print */}
+        <section className="mt-6 grid grid-cols-3 gap-4 border-b border-gold/40 pb-6">
+          {dict.home.byTheNumbers.items.map((s) => (
+            <div key={s.label} className="flex flex-col gap-1">
+              <span className="font-display text-2xl font-bold leading-none text-deep-navy">
+                {s.value}
+              </span>
+              <Mono className="text-[9px] uppercase leading-tight tracking-tracked text-stone">
+                {s.label}
+              </Mono>
+            </div>
+          ))}
+        </section>
+
         {/* Bio */}
         <section className="mt-8">
           <p className="text-base leading-relaxed text-stone">{dict.about.bio[0]}</p>

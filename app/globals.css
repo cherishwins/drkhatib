@@ -132,6 +132,28 @@ html[lang='ar'] body {
   animation: scroll-cue-bob 1.6s ease-in-out infinite;
 }
 
+/* Print — for the /cv page. Avoid awkward section breaks; single-color */
+@media print {
+  html,
+  body {
+    background: white !important;
+    color: #0a0e17 !important;
+  }
+  section,
+  ul,
+  ol {
+    break-inside: avoid;
+  }
+  a[href]::after {
+    content: '';
+  }
+  .skip-link,
+  header[role='banner'],
+  footer[role='contentinfo'] {
+    display: none !important;
+  }
+}
+
 /* Reduce motion — kill all animation, scroll, transition */
 @media (prefers-reduced-motion: reduce) {
   *,
