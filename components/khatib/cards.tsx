@@ -5,12 +5,14 @@ import { Mono } from './atoms';
 export function PillarCard({
   number,
   title,
+  themes,
   summary,
   href,
   cta,
 }: {
   number: string;
   title: string;
+  themes?: string;
   summary: string;
   href: string;
   cta: string;
@@ -24,6 +26,11 @@ export function PillarCard({
       <h3 className="font-display text-2xl font-semibold leading-tight text-cream md:text-3xl">
         {title}
       </h3>
+      {themes && (
+        <p className="font-mono text-[10px] uppercase leading-relaxed tracking-tracked text-gold/80">
+          {themes}
+        </p>
+      )}
       <p className="text-sm leading-relaxed text-warm-gray md:text-base">{summary}</p>
       <span className="mt-2 font-mono text-[11px] uppercase tracking-tracked-wide text-gold transition-transform group-hover:translate-x-0.5">
         {cta}

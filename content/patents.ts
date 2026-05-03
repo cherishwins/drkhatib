@@ -7,6 +7,10 @@ export interface Patent {
   jurisdiction: string;
   title_en: string;
   title_ar: string;
+  // One-sentence "problem in the world" opener — frames the patent as a mission
+  // rather than a list item. Per Site-Plan §3E.
+  mission_en: string;
+  mission_ar: string;
   abstract_en: string[];
   abstract_ar: string[];
   claims_en: string[];
@@ -31,6 +35,10 @@ export const patents: Patent[] = [
     jurisdiction: 'Lebanon',
     title_en: 'Economic Vessel for Solid-Waste Recovery in Waterways',
     title_ar: 'سفينة اقتصادية لتجميع النفايات الصلبة في الممرات المائية',
+    mission_en:
+      'Lebanese rivers, lakes, and protected coastal waters accumulate solid waste faster than municipal capacity can collect it, and imported industrial skimmers are out of reach for most authorities.',
+    mission_ar:
+      'تتراكم النفايات الصلبة في الأنهار والبحيرات والمياه الساحلية المحميّة في لبنان بوتيرة تفوق قدرة البلديات على الجمع، وتبقى أجهزة الكشط الصناعية المستوردة بعيدة عن متناول معظم السلطات المحلية.',
     abstract_en: [
       'A small, low-cost vessel designed to collect solid waste — plastics, organic debris, urban runoff — from rivers, lakes, and protected coastal waters. The system uses a passive collection grille combined with a buoyant skiff that can be deployed by a single operator from any accessible bank or jetty.',
       'Designed for Lebanese waterways where scale, budget, and accessibility constraints make industrial trash-skimmers impractical. Material specification favours locally-sourced marine-grade aluminium and HDPE. Co-inventor: Dr. Bassam Mahmoud.',
@@ -71,6 +79,10 @@ export const patents: Patent[] = [
     jurisdiction: 'Lebanon',
     title_en: 'Food-Particle Collection Device for Post-Eating Hygiene',
     title_ar: 'جهاز تجميع جزيئات الطعام والسوائل من الفم بعد الأكل',
+    mission_en:
+      'Bedside care for patients with limited oral motor control accumulates dropped food particles and oral spill, with no purpose-built device sitting between disposable wipes and dental-hygiene equipment.',
+    mission_ar:
+      'في رعاية المرضى ذوي القدرة الفموية المحدودة، تتراكم جزيئات الطعام المتساقطة والسوائل الفموية، ولا يوجد جهاز مصمَّم لهذا الغرض يقع بين المناديل القابلة للاستخدام مرّة واحدة وأدوات نظافة الأسنان.',
     abstract_en: [
       'A small personal-hygiene device for collecting food particles and liquid spills — milk, food remnants, seed shells — from the mouth after eating. Designed as a domestic and clinical-care product, with applications in both general hygiene and assisted-living contexts where conventional post-meal cleaning is impractical or insufficient.',
       'The device occupies a small market gap between disposable wipes and dental-hygiene equipment, offering a reusable single-use-cartridge approach designed for cost-conscious manufacture in regional supply chains. Sole inventor.',

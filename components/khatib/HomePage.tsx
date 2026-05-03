@@ -134,6 +134,38 @@ export function HomePage({ locale, dict }: { locale: Locale; dict: Dictionary })
         </div>
       </section>
 
+      {/* IN THE ROOM — recent recognition / press */}
+      <section className="border-t border-warm-gray/15 bg-deep-navy px-4 py-20 md:px-8 md:py-24">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow={isAr ? 'تكريم' : 'Recognition'}
+            title={dict.home.pressTitle}
+            lede={dict.home.pressLede}
+          />
+          <ul className="mt-10 grid gap-6 md:grid-cols-3 md:gap-8">
+            {dict.home.press.map((item) => (
+              <li key={item.title} className="flex flex-col gap-3 border-l-2 border-gold/40 bg-navy/30 p-6">
+                <Mono className="text-[10px] uppercase tracking-tracked text-gold">
+                  {item.label}
+                </Mono>
+                <h3 className="font-display text-xl font-semibold leading-snug text-cream md:text-2xl">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-warm-gray">{item.venue}</p>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 font-mono text-[11px] uppercase tracking-tracked text-gold hover:underline"
+                >
+                  {isAr ? 'تحقّق ←' : 'Verify →'}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* SELECTED PUBLICATIONS */}
       <section className="bg-deep-navy px-4 py-20 md:px-8 md:py-28">
         <div className="mx-auto max-w-5xl">

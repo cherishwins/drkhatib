@@ -57,6 +57,7 @@ export function PatentDetailPage({
   const isAr = locale === 'ar';
   const prefix = isAr ? '/ar' : '';
   const title = isAr ? patent.title_ar : patent.title_en;
+  const mission = isAr ? patent.mission_ar : patent.mission_en;
   const abstract = isAr ? patent.abstract_ar : patent.abstract_en;
   const claims = isAr ? patent.claims_ar : patent.claims_en;
   return (
@@ -70,6 +71,9 @@ export function PatentDetailPage({
           <h1 className="font-display text-3xl font-semibold leading-tight text-cream md:text-5xl lg:text-6xl">
             {title}
           </h1>
+          <p className="mt-8 max-w-prose border-l-2 border-gold/60 pl-6 font-display text-xl italic leading-relaxed text-warm-gray md:text-2xl">
+            {mission}
+          </p>
         </div>
       </header>
 

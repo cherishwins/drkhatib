@@ -61,18 +61,21 @@
       "structural": {
         "number": "01",
         "title": "Structural Engineering",
+        "themes": "Post-tension · prestressed concrete · fibre-reinforced systems · seismic isolation",
         "summary": "Post-tensioned and prestressed concrete, fiber-reinforced systems, monostrand anchorage. Methodology grounded in peer-reviewed research.",
         "href": "/services/structural"
       },
       "geotechnical": {
         "number": "02",
         "title": "Geotechnical Engineering",
+        "themes": "Dam grouting · diaphragm walls · groundwater · water-resource engineering",
         "summary": "Slope stability, dam grouting by GIN method, diaphragm walls, water-resource engineering for Lebanese terrain.",
         "href": "/services/geotechnical"
       },
       "forensic": {
         "number": "03",
         "title": "Forensic & Expert Witness",
+        "themes": "Bilingual reports · sustainability assessment · defensible methodology · sworn deposition",
         "summary": "Defensible technical reports for insurers, law firms, and courts. Methodology before conclusion.",
         "href": "/services/forensic"
       }
@@ -80,6 +83,28 @@
     "selectedTitle": "Selected publications",
     "selectedLede": "Six papers from the record. Each links to a DOI.",
     "viewAll": "52 publications total — view full record →",
+    "pressTitle": "In the room",
+    "pressLede": "Selected recent recognition.",
+    "press": [
+      {
+        "label": "Keynote",
+        "title": "ICCEIC 2024",
+        "venue": "Civil Engineering and Intelligent Construction · China",
+        "href": "https://ce.iamset.org/speakers/2024/en"
+      },
+      {
+        "label": "First Lebanese speaker",
+        "title": "24 Hours of Concrete Knowledge",
+        "venue": "American Concrete Institute · global online programme",
+        "href": "https://www.concrete.org/Portals/0/Files/PDF/24HCK-Program.pdf"
+      },
+      {
+        "label": "Press feature",
+        "title": "Nabta Magazine",
+        "venue": "Profile feature, 2024",
+        "href": "https://www.facebook.com/share/p/15i9a6WpVr/"
+      }
+    ],
     "patentsTitle": "Patents",
     "patentsLede": "Two registered Lebanese patents, each with a peer-reviewed companion publication.",
     "closingTagline": "Engineering by proof.",

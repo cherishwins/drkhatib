@@ -30,7 +30,7 @@ export const talks: Talk[] = [
   {
     date: '2024',
     title_en: '24 Hours of Concrete Knowledge — first Lebanese speaker',
-    title_ar: '٢٤ ساعة من المعرفة الخرسانية — أول متحدث لبناني',
+    title_ar: '24 ساعة من المعرفة الخرسانية — أول متحدث لبناني',
     venue: 'American Concrete Institute — global online programme',
     country: 'International',
     link: 'https://www.concrete.org/Portals/0/Files/PDF/24HCK-Program.pdf',
@@ -127,7 +127,7 @@ export const talks: Talk[] = [
   {
     date: 'May 2023',
     title_en: 'Engineering Construction Problems from the Turkey Earthquake (6 Feb 2023, Mw 7.8)',
-    title_ar: 'مشكلات الإنشاء الهندسي من زلزال تركيا (٦ شباط ٢٠٢٣، Mw 7.8)',
+    title_ar: 'مشكلات الإنشاء الهندسي من زلزال تركيا (6 شباط 2023، Mw 7.8)',
     venue: 'Engineering forum',
     country: 'Lebanon',
   },
