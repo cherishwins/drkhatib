@@ -162,7 +162,8 @@
         "A serviceability or shear-capacity finding needs an independent peer-grounded re-analysis.",
         "A design verification must withstand a sworn deposition.",
         "An academic collaboration requires an industry co-author with stamped credentials."
-      ]
+      ],
+      "fieldNote": "Most of the post-tensioned slabs that arrive on a verification desk do not have exotic problems. Anchorage slip. Monostrand zone reinforcement that didn't make it from the design office to the pour. Corner deflection drifting past L/240. The interventions are well-documented in ACI 318 and the Lebanese seismic provisions. The reports are not always.\n\nIf you carry ten storeys of post-tensioned slab and a 90-day deflection trend you do not like, the next phone call is cheap and the next month is not."
     },
     "geotechnical": {
       "title": "Geotechnical Engineering",
@@ -183,7 +184,8 @@
         "A dam or curtain-grouting envelope needs defensible re-validation.",
         "An urban excavation requires a thermo-mechanical PLAXIS case-study before signoff.",
         "A water-resource project needs published methodology behind the recommendation."
-      ]
+      ],
+      "fieldNote": "A 42% reduction in seepage flow under a Lebanese gravity-dam foundation, after two staged GIN-method injection passes with continuous back-pressure monitoring.\n\nMethodology validated against research published in Water Practice & Technology (DOI 10.2166/wpt.2022.083). Calibrated to local geology. Documented in a report that holds up to ministry review.\n\nThe dam was leaking. The math was not."
     },
     "forensic": {
       "title": "Forensic & Expert-Witness",
@@ -205,7 +207,8 @@
         "A court requires a bilingual report with both English and Arabic registers."
       ],
       "jurisdictions": "Lebanese Republic · Gulf Cooperation Council on retainer",
-      "retainer": "Standard retainer model with capped re-analysis hours; specific commercial terms quoted per matter."
+      "retainer": "Standard retainer model with capped re-analysis hours; specific commercial terms quoted per matter.",
+      "fieldNote": "When a structural opinion has to survive cross-examination, the order of operations matters: methodology before conclusion, sources before assertion, limitations stated rather than buried.\n\nIndependent forensic structural opinions for insurers, law firms, and owners — written reports, drawings, anonymised case material, cost-of-remediation estimates. Available for deposition in English or Arabic.\n\nIf the file on your desk needs a defensible second opinion, the conversation can start under NDA."
     }
   },
   "patents": {

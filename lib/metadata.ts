@@ -144,3 +144,97 @@ export function breadcrumbJsonLd(items: Array<{ name: string; href: string }>) {
     })),
   };
 }
+
+interface PatentJsonLdInput {
+  slug: string;
+  title: string;
+  abstract: string;
+  year: number;
+  jurisdiction: string;
+  inventors: string;
+  companion?: { citation: string; doi?: string };
+}
+
+// Schema.org doesn't have a first-class Patent type with full coverage, so we
+// emit CreativeWork with additionalType per Google's structured-data guidance.
+export function patentJsonLd(input: PatentJsonLdInput) {
+  const url = `${SITE}/patents/${input.slug}`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    additionalType: 'https://schema.org/Patent',
+    name: input.title,
+    headline: input.title,
+    description: input.abstract,
+    url,
+    inLanguage: 'en',
+    datePublished: String(input.year),
+    creator: input.inventors
+      .split('·')
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((name) => ({ '@type': 'Person', name })),
+    locationCreated: {
+      '@type': 'Country',
+      name: input.jurisdiction,
+    },
+    ...(input.companion
+      ? {
+          isBasedOn: {
+            '@type': 'ScholarlyArticle',
+            name: input.companion.citation,
+            ...(input.companion.doi
+              ? {
+                  identifier: {
+                    '@type': 'PropertyValue',
+                    propertyID: 'DOI',
+                    value: input.companion.doi,
+                  },
+                  url: `https://doi.org/${input.companion.doi}`,
+                }
+              : {}),
+          },
+        }
+      : {}),
+  };
+}
+
+interface PublicationItem {
+  num: number;
+  title: string;
+  venue: string;
+  year: number;
+  doi?: string;
+}
+
+// Selected publications rendered as an ItemList of ScholarlyArticle so the
+// home page surfaces structured author-publication evidence to crawlers.
+export function selectedPublicationsJsonLd(items: PublicationItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Selected publications by Dr. Milad Khatib',
+    itemListElement: items.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'ScholarlyArticle',
+        headline: p.title,
+        name: p.title,
+        author: { '@type': 'Person', name: brand.shortNameEn },
+        isPartOf: { '@type': 'Periodical', name: p.venue },
+        datePublished: String(p.year),
+        ...(p.doi
+          ? {
+              identifier: {
+                '@type': 'PropertyValue',
+                propertyID: 'DOI',
+                value: p.doi,
+              },
+              url: `https://doi.org/${p.doi}`,
+            }
+          : {}),
+      },
+    })),
+  };
+}

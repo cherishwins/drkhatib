@@ -145,6 +145,29 @@ export function ServicePillarPage({
           </Link>
         </div>
       </section>
+
+      {/* FROM THE FIELD — senior-engineer voice callout */}
+      {'fieldNote' in pillar && pillar.fieldNote && (
+        <section className="border-y border-gold/30 bg-deep-navy px-4 py-20 md:px-8 md:py-28">
+          <figure className="mx-auto flex max-w-3xl flex-col gap-6">
+            <Mono className="text-[10px] uppercase tracking-tracked-wide text-gold">
+              {isAr ? 'من الميدان' : 'From the field'}
+            </Mono>
+            <blockquote className="border-l-2 border-gold/60 pl-6 font-display text-xl italic leading-relaxed text-cream md:pl-8 md:text-2xl">
+              {pillar.fieldNote
+                .split('\n\n')
+                .map((paragraph: string, i: number) => (
+                  <p key={i} className={i > 0 ? 'mt-5' : undefined}>
+                    {paragraph}
+                  </p>
+                ))}
+            </blockquote>
+            <figcaption className="font-mono text-[10px] uppercase tracking-tracked text-warm-gray">
+              — {isAr ? 'الهندسة بالبرهان' : 'Engineering by proof'}
+            </figcaption>
+          </figure>
+        </section>
+      )}
     </article>
   );
 }

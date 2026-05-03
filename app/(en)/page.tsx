@@ -1,9 +1,18 @@
 import type { Metadata } from 'next';
 import { HomePage } from '@/components/khatib/HomePage';
 import { getDictionary } from '@/lib/i18n';
-import { buildMetadata, personJsonLd, websiteJsonLd } from '@/lib/metadata';
+import {
+  buildMetadata,
+  personJsonLd,
+  selectedPublicationsJsonLd,
+  websiteJsonLd,
+} from '@/lib/metadata';
+import { publications } from '@/content/publications';
 
 const dict = getDictionary('en');
+
+// Same six anchor publications surfaced in HomePage. Kept in sync by num.
+const SELECTED_NUMS = [29, 27, 14, 30, 39, 12];
 
 export const metadata: Metadata = buildMetadata({
   title: 'Dr. Milad Khatib · Civil Engineering Consultancy',
@@ -15,14 +24,28 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function HomeEn() {
+  const selected = SELECTED_NUMS.map((n) => publications.find((p) => p.num === n)).filter(
+    (p): p is NonNullable<typeof p> => Boolean(p),
+  );
+  const ld = [
+    personJsonLd(),
+    websiteJsonLd('en'),
+    selectedPublicationsJsonLd(
+      selected.map((p) => ({
+        num: p.num,
+        title: p.title,
+        venue: p.venue,
+        year: p.year,
+        doi: p.doi,
+      })),
+    ),
+  ];
   return (
     <>
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD injection
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([personJsonLd(), websiteJsonLd('en')]),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
       />
       <HomePage locale="en" dict={dict} />
     </>

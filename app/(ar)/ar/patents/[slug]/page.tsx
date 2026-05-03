@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PatentDetailPage } from '@/components/khatib/PatentsPage';
 import { getDictionary } from '@/lib/i18n';
-import { buildMetadata } from '@/lib/metadata';
+import { buildMetadata, patentJsonLd } from '@/lib/metadata';
 import { findPatent, patents } from '@/content/patents';
 
 const dict = getDictionary('ar');
@@ -28,5 +28,27 @@ export async function generateMetadata({
 export default function Page({ params }: { params: { slug: string } }) {
   const patent = findPatent(params.slug);
   if (!patent) notFound();
-  return <PatentDetailPage locale="ar" dict={dict} patent={patent} />;
+  // JSON-LD shipped in the EN form for crawler consistency — schema.org
+  // properties are language-neutral but Google indexes the EN structure.
+  const ld = patentJsonLd({
+    slug: patent.slug,
+    title: patent.title_en,
+    abstract: patent.abstract_en.join(' '),
+    year: patent.year,
+    jurisdiction: patent.jurisdiction,
+    inventors: patent.inventors,
+    companion: patent.companion
+      ? { citation: patent.companion.citation_en, doi: patent.companion.doi }
+      : undefined,
+  });
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD injection
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+      />
+      <PatentDetailPage locale="ar" dict={dict} patent={patent} />
+    </>
+  );
 }
