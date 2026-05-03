@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+// Runtime: default Node (Fluid Compute). See opengraph-image.tsx for the why.
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 

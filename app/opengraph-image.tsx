@@ -6,8 +6,12 @@ import { ImageResponse } from 'next/og';
 // Implementation note: satori (next/og's renderer) does not support
 // SVG <text> elements, so all type is rendered via plain HTML/CSS divs.
 // The MK cube uses SVG <path> only, which IS supported.
+//
+// Runtime: default Node (Fluid Compute). Edge runtime is no longer
+// recommended on Vercel as of 2026-02 — Fluid Compute runs in the same
+// regions at the same price with full Node compatibility and lower
+// cold-start cost via instance reuse.
 
-export const runtime = 'edge';
 export const alt = 'Dr. Milad Khatib — Civil Engineering Consultancy. Beirut, Lebanon.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
