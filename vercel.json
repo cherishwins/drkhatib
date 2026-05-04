@@ -4,18 +4,6 @@
   "functions": {
     "app/api/contact/route.ts": {
       "maxDuration": 10
-    },
-    "app/opengraph-image.tsx": {
-      "maxDuration": 30
-    },
-    "app/(en)/patents/[slug]/opengraph-image.tsx": {
-      "maxDuration": 30
-    },
-    "app/(ar)/ar/patents/[slug]/opengraph-image.tsx": {
-      "maxDuration": 30
-    },
-    "app/apple-icon.tsx": {
-      "maxDuration": 15
     }
   }
 }
