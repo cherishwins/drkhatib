@@ -1,6 +1,7 @@
 import { talks } from '@/content/speaking';
 import type { Dictionary } from '@/lib/i18n';
 import type { Locale } from '@/lib/tokens';
+import { speakingJsonLd } from '@/lib/speaking-jsonld';
 import Image from 'next/image';
 import { SectionHeading } from './SectionHeading';
 import { Mono } from './atoms';
@@ -9,6 +10,10 @@ export function SpeakingPage({ locale, dict }: { locale: Locale; dict: Dictionar
   const isAr = locale === 'ar';
   return (
     <article className="bg-deep-navy">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(speakingJsonLd()) }}
+      />
       {/* Header with ambient conference photo — composition only, no specific
           event caption per brand-kit "real captions only" rule. The image is
           treated as ambient context (low opacity, gradient mask). */}
